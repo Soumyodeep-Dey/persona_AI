@@ -5,7 +5,6 @@ import Header from "./components/header";
 import MessageList from "./components/MessageList";
 import MessageInput from "./components/MessageInput";
 import PersonaSelector from "./components/PersonaSelector";
-import LoadingIndicator from "./components/LoadingIndicator";
 
 const personaImages = {
   hitesh: "/images/hitesh.png",
@@ -109,8 +108,8 @@ export default function App() {
         messageCount={messages.length}
       />
 
-      <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
           <aside className="md:col-span-1">
             <PersonaSelector
               persona={persona}
@@ -120,15 +119,14 @@ export default function App() {
             />
           </aside>
 
-          <section className="md:col-span-3">
-            <div className={"bg-white dark:bg-gray-800 rounded-2xl shadow p-6 flex flex-col min-h-0 h-full"}>
+          <section className="md:col-span-5">
+            <div className={"bg-white dark:bg-gray-800 rounded-2xl shadow p-8 flex flex-col min-h-0 h-full"}>
               <div className="flex-1 overflow-hidden min-h-0">
                 <MessageList
                   messages={messages}
                   personaImages={personaImages}
                   loading={loading}
                 />
-                {loading && <LoadingIndicator persona={persona} />}
               </div>
 
               <div className="mt-4">

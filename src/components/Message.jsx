@@ -2,8 +2,12 @@ import { useState } from "react";
 
 export default function Message({ message, personaImages }) {
   const [imageError, setImageError] = useState(false);
+  const [userImageError, setUserImageError] = useState(false);
   const isUser = message.role === "user";
   const isError = message.isError;
+
+  // Path to the public user photo; change this if your image file name is different
+  const userImagePath = "/images/me.jpg";
 
   const formatTime = (timestamp) => {
     if (!timestamp) return "";
@@ -41,7 +45,7 @@ export default function Message({ message, personaImages }) {
       )}
 
       <div className={`max-w-[70%] ${isUser ? 'text-right' : 'text-left'}`}>
-        <div className={`inline-block px-4 py-2 rounded-2xl shadow ${isUser ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-700 dark:text-gray-100 text-gray-900'}`}>
+        <div className={`inline-block px-4 py-2 rounded-2xl shadow ${isUser ? 'bg-primary-600 text-white' : 'bg-surface dark:bg-surface-dark text-text dark:text-text-dark'}`}>
           {!isUser && (
             <div className="flex items-baseline gap-2 mb-1">
               <span className="font-semibold text-sm">{message.persona || 'Assistant'}</span>
@@ -68,9 +72,18 @@ export default function Message({ message, personaImages }) {
 
       {isUser && (
         <div className="ml-3 flex-shrink-0">
-          <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-sm font-semibold text-blue-700">
-            You
-          </div>
+          {!userImageError ? (
+            <img
+              src={userImagePath}
+              alt="You"
+              className="w-10 h-10 rounded-full object-cover"
+              onError={() => setUserImageError(true)}
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-sm font-semibold text-blue-700">
+              You
+            </div>
+          )}
         </div>
       )}
     </div>

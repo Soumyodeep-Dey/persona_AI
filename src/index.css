@@ -2,6 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global theme bindings using the semantic tokens defined in tailwind.config.js */
+:root {
+    --transition-duration: 200ms;
+}
+
 body {
-    @apply bg-gray-100;
+    @apply bg-background text-text antialiased transition-colors duration-200;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* When Tailwind's class-based dark mode is active the `.dark` class will be on <html> */
+.dark body {
+    @apply bg-background-dark text-text-dark;
+}
+
+/* Links */
+a {
+    @apply text-primary-600 hover:underline;
+}
+
+.dark a {
+    @apply text-primary-300 hover:underline;
+}
+
+/* Buttons */
+.btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-300;
+}
+
+/* Cards and panels */
+.card {
+    @apply bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-lg shadow-sm;
+}
+
+/* Form controls */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    @apply bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-300;
+}
+
+/* Textareas used in chat input should remain flexible but themed */
+textarea {
+    @apply resize-none;
+}
+
+/* Utility: small muted text */
+.text-muted {
+    /* Avoid using @apply with the same token name — use concrete utilities instead */
+    @apply text-sm text-gray-500 dark:text-gray-400;
+}
+
+/* Card/container spacing helpful for the chat area */
+.container-card {
+    @apply p-4;
+}
+
+/* Make color transitions smoother across the UI */
+* {
+    transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, border-color var(--transition-duration) ease;
 }

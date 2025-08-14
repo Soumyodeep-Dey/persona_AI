@@ -33,7 +33,7 @@ export default function MessageInput({ input, setInput, onSend, loading, placeho
       <form onSubmit={handleSubmit} className="flex items-end gap-3">
         <button
           type="button"
-          className="p-2 rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50"
+          className="p-2 rounded-md bg-muted dark:bg-muted-dark hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50"
           title="Attach file"
           disabled={loading}
         >
@@ -51,7 +51,7 @@ export default function MessageInput({ input, setInput, onSend, loading, placeho
           onPaste={handlePaste}
           placeholder={placeholder || "Type your message..."}
           disabled={loading}
-          className="flex-1 min-h-[44px] max-h-[160px] resize-none px-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+          className="flex-1 min-h-[44px] max-h-[160px] resize-none px-4 py-3 rounded-2xl border border-border dark:border-border-dark bg-background dark:bg-background-dark text-sm focus:outline-none focus:ring-2 focus:ring-primary-300"
           rows="1"
           maxLength={2000}
         />
