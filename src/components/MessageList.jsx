@@ -4,7 +4,7 @@ import Message from "./Message";
 export default function MessageList({ messages, personaImages, loading }) {
   const messagesEndRef = useRef(null);
   const containerRef = useRef(null);
-  const [isAtBottom, setIsAtBottom] = useState(true);
+  // Removed unused isAtBottom state
   const [showNewIndicator, setShowNewIndicator] = useState(false);
   const [lastSeenCount, setLastSeenCount] = useState(() => messages.length);
   const scrollTimeout = useRef(null);
@@ -16,17 +16,12 @@ export default function MessageList({ messages, personaImages, loading }) {
     });
   };
 
-  // Auto-scroll logic: only scroll when user is already at (or near) the bottom.
+  // Auto-scroll logic: always scroll to bottom after new reply
   useEffect(() => {
-    if (isAtBottom) {
-      scrollToBottom();
-      setShowNewIndicator(false);
-      setLastSeenCount(messages.length);
-    } else {
-      // if new messages arrive while user is scrolled up, show indicator
-      setShowNewIndicator(true);
-    }
-  }, [messages, loading, isAtBottom]);
+    scrollToBottom();
+    setShowNewIndicator(false);
+    setLastSeenCount(messages.length);
+  }, [messages, loading]);
 
   // Track whether user is at bottom
   useEffect(() => {
@@ -39,13 +34,7 @@ export default function MessageList({ messages, personaImages, loading }) {
       // debounce frequent scroll events to reduce re-renders
       scrollTimeout.current = setTimeout(() => {
         const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight <= threshold;
-        setIsAtBottom((prev) => {
-          if (prev !== atBottom) {
-            if (atBottom) setShowNewIndicator(false);
-            return atBottom;
-          }
-          return prev;
-        });
+        if (atBottom) setShowNewIndicator(false);
       }, 80);
     };
 

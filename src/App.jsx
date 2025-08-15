@@ -130,27 +130,29 @@ export default function App() {
 
           <section className="md:col-span-4">
             <div className="bg-surface dark:bg-dark-400 rounded-3xl shadow-xl border border-border dark:border-dark-350 p-8 flex flex-col min-h-0 h-full transition-colors duration-500 animate-fadeInLeft">
-              <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar">
-                <MessageList
-                  messages={messages}
-                  personaImages={personaImages}
-                  loading={loading}
-                />
-              </div>
-
-              <div className="mt-6">
-                {limitReached && (
-                  <div className="mb-4 text-center text-red-600 font-semibold bg-red-50 border border-red-200 rounded-xl p-3">
-                    Message limit reached! Please clear the chat to continue.
-                  </div>
-                )}
-                <MessageInput
-                  input={input}
-                  setInput={setInput}
-                  onSend={sendMessage}
-                  loading={loading || limitReached}
-                  placeholder={limitReached ? "Message limit reached" : `Chat with ${persona}...`}
-                />
+              {/* Make message area and input flex children so input is always visible */}
+              <div className="flex flex-col flex-1 min-h-0">
+                <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar">
+                  <MessageList
+                    messages={messages}
+                    personaImages={personaImages}
+                    loading={loading}
+                  />
+                </div>
+                <div className="mt-6">
+                  {limitReached && (
+                    <div className="mb-4 text-center text-red-600 font-semibold bg-red-50 border border-red-200 rounded-xl p-3">
+                      Message limit reached! Please clear the chat to continue.
+                    </div>
+                  )}
+                  <MessageInput
+                    input={input}
+                    setInput={setInput}
+                    onSend={sendMessage}
+                    loading={loading || limitReached}
+                    placeholder={limitReached ? "Message limit reached" : `Chat with ${persona}...`}
+                  />
+                </div>
               </div>
             </div>
           </section>

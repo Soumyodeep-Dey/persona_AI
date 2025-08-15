@@ -7,8 +7,10 @@ export default function Header({ darkMode, setDarkMode, onClearChat, messageCoun
                 <h1 className="m-0 text-2xl font-bold tracking-tight text-primary-700 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-primary-700 dark:to-primary-400">Persona AI Chatbot</h1>
 
                 <div className="flex items-center gap-4">
-                    <div className="hidden sm:block text-sm text-gray-700 dark:text-muted-dark">Messages: {messageCount}</div>
 
+                    <div className="hidden sm:block text-sm font-semibold tracking-wide px-3 py-1 rounded-lg text-gray-700 dark:text-black shadow-sm bg-gradient-to-r from-primary-50 via-surface to-primary-100 border border-primary-100 dark:border-primary-700 dark:bg-dark-900 dark:shadow-lg">Messages: {messageCount}</div>
+
+                    <div className="mx-6"></div>
                     <button
                         onClick={onClearChat}
                         aria-label="Clear chat history"

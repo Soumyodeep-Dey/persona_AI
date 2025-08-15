@@ -1,3 +1,38 @@
+/* Custom minimal scrollbars for message list */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #a5b4fc #f3f4f6;
+    /* thumb, track for light */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #a5b4fc;
+    border-radius: 8px;
+}
+
+/* Dark theme custom scrollbar */
+.dark .custom-scrollbar {
+    scrollbar-color: #6366f1 #18181b;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+    background: #18181b;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #6366f1;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
