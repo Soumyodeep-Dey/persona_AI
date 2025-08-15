@@ -463,18 +463,18 @@ export const personaMetadata = {
     hitesh: {
         socialMedia: {
             twitter: "https://twitter.com/Hiteshdotcom",
-            linkedin: "https://www.linkedin.com/in/hitesh-choudhary/",
-            youtube: "https://www.youtube.com/@HiteshChoudharydotcom",
+            linkedin: "https://www.linkedin.com/in/hiteshchoudhary/",
+            youtube: "https://www.youtube.com/@HiteshCodeLab",
             github: "https://github.com/hiteshchoudhary",
-            instagram: "https://www.instagram.com/hiteshdotcom/"
+            instagram: "https://www.instagram.com/hiteshchoudharyofficial/"
         },
         currentRole: "CTO at iNeuron",
         studentCount: "1.6M+",
-        signature: "Chai aur Code ☕💻",
+        signature: "Chai aur Code ☕",
         collaborations: ["Piyush Garg Cohorts", "Full Stack Web Developer Cohort 1.0"],
         platforms: {
-            udemy: "https://www.udemy.com/user/hitesh-choudhary/",
-            website: "https://hiteshchoudhary.com/"
+            udemy: "https://www.udemy.com/user/hitesh-choudharycom/",
+            website: "https://hiteshchoudhary.com/https://hitesh.ai/"
         }
     },
     piyush: {
@@ -482,8 +482,8 @@ export const personaMetadata = {
             twitter: "https://twitter.com/piyushgarg_dev",
             linkedin: "https://www.linkedin.com/in/piyushgarg195/",
             youtube: "https://www.youtube.com/@piyushgargdev",
-            github: "https://github.com/piyushgarg",
-            instagram: "https://www.instagram.com/piyushgargdev/"
+            github: "https://github.com/piyushgarg-dev",
+            instagram: "https://www.instagram.com/piyushgarg_dev/"
         },
         currentRole: "Founder of Teachyst",
         subscriberCount: "275K+ (YouTube), 30K+ (LinkedIn), 20K+ (X)",
@@ -492,7 +492,7 @@ export const personaMetadata = {
         countries_visited: 39,
         platforms: {
             teachyst: "https://teachyst.com/",
-            website: "https://piyushgarg.dev/"
+            website: "https://www.piyushgarg.dev/"
         }
     }
 };

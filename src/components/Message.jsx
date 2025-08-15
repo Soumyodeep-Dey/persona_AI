@@ -45,12 +45,12 @@ export default function Message({ message, personaImages }) {
       )}
 
       <div className={`max-w-[80%] ${isUser ? 'text-right' : 'text-left'}`}>
-        <div className={`inline-block px-6 py-4 rounded-3xl shadow-xl border ${isUser ? 'bg-gradient-to-r from-primary-600 to-primary-400 text-white border-primary-200' : 'bg-gradient-to-br from-surface via-primary-50 to-surface dark:from-dark-400 dark:via-dark-350 dark:to-dark-400 text-text dark:text-dark-950 border-border dark:border-dark-350'} backdrop-blur-md transition-all duration-300`}>
+        <div className={`inline-block px-6 py-4 rounded-3xl shadow-xl border ${isUser ? 'bg-gradient-to-r from-primary-600 to-primary-400 text-white border-primary-300' : 'bg-light-100 text-gray-900 border-light-250'} backdrop-blur-md transition-all duration-300`}>
           <div className="flex items-center justify-between mb-2">
             {!isUser && (
               <span className="font-bold text-primary-700 dark:text-primary-200 text-base">{message.persona || 'Assistant'}</span>
             )}
-            <span className="text-xs text-muted dark:text-muted-dark ml-2">{formatTime(message.timestamp)}</span>
+            <span className="text-xs text-black dark:text-muted-dark ml-2">{formatTime(message.timestamp)}</span>
           </div>
 
           <div className="whitespace-pre-wrap break-words text-base leading-relaxed">

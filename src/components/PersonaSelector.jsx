@@ -59,12 +59,12 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
 
   return (
     <div className="w-full md:w-72 lg:w-80 bg-gradient-to-br from-primary-50 via-surface to-primary-100 dark:from-background-dark dark:via-surface-dark dark:to-primary-900 rounded-2xl shadow-xl p-5 sm:sticky sm:top-6 border border-border dark:border-border-dark transition-colors duration-300 animate-fadeInLeft">
-      <div className="flex items-center gap-4 mb-4">
-        <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg border-2 border-primary-200 dark:border-primary-700 bg-white dark:bg-background-dark">
+      <div className="flex items-center gap-6 mb-4">
+        <div className="w-24 h-24 rounded-full overflow-hidden shadow-xl border-4 border-primary-200 dark:border-primary-700 bg-white dark:bg-background-dark">
           {personaImages[persona] ? (
             <img src={personaImages[persona]} alt={`${current.name} avatar`} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-lg font-semibold text-gray-700 dark:text-gray-200">{current.name[0]}</div>
+            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-2xl font-bold text-gray-700 dark:text-gray-200">{current.name[0]}</div>
           )}
         </div>
         <div>
@@ -115,11 +115,11 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
                 onClick={() => select(p.id)}
                 className={`w-full text-left px-4 py-3 flex items-center gap-4 hover:bg-primary-50 dark:hover:bg-primary-900 transition-colors duration-150 ${p.id === persona ? 'bg-primary-100 dark:bg-primary-800' : ''} rounded-lg`}
               >
-                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary-200 dark:border-primary-700 bg-white dark:bg-background-dark">
+                <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-4 border-primary-200 dark:border-primary-700 bg-white dark:bg-background-dark">
                   {personaImages[p.id] ? (
                     <img src={personaImages[p.id]} alt={`${p.name} avatar`} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-200">{p.name[0]}</div>
+                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-xl font-bold text-gray-700 dark:text-gray-200">{p.name[0]}</div>
                   )}
                 </div>
                 <div className="flex-1">
