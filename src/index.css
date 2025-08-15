@@ -8,7 +8,8 @@
 }
 
 body {
-    @apply bg-background text-text antialiased transition-colors duration-200;
+    /* Light mode: subtle light-blue gradient background to add depth */
+    @apply bg-gradient-to-br from-light-150 via-light-100 to-surface text-text antialiased transition-colors duration-200;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -32,17 +33,18 @@ a {
     @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-300;
 }
 
-/* Cards and panels */
+/* Cards and panels: white cards on the off-white page background */
 .card {
-    @apply bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-lg shadow-sm;
+    /* White card on soft blue page with stronger shadow for depth */
+    @apply bg-background dark:bg-surface-dark border border-border dark:border-border-dark rounded-xl shadow-md;
 }
 
-/* Form controls */
+/* Form controls: use white inputs on the off-white page */
 input[type="text"],
 input[type="email"],
 textarea,
 select {
-    @apply bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-300;
+    @apply bg-background dark:bg-surface-dark border border-border dark:border-border-dark rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-300;
 }
 
 /* Textareas used in chat input should remain flexible but themed */
@@ -52,8 +54,19 @@ textarea {
 
 /* Utility: small muted text */
 .text-muted {
-    /* Avoid using @apply with the same token name — use concrete utilities instead */
-    @apply text-sm text-gray-500 dark:text-gray-400;
+    /* Muted text slightly bluish in light mode */
+    @apply text-sm text-sky-600/80 dark:text-gray-400;
+}
+
+/* Header & Footer tweaks for light mode to use pale blue surface */
+.site-shell-header,
+.site-shell-footer {
+    @apply bg-surface/80 backdrop-blur-sm;
+}
+
+/* Improve primary button contrast in light mode */
+.btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-300 shadow;
 }
 
 /* Card/container spacing helpful for the chat area */
