@@ -118,8 +118,8 @@ export default function App() {
       />
 
       <main className="flex-1 max-w-full xl:max-w-screen-2xl mx-auto px-0 sm:px-2 lg:px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
-          <aside className="md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-8 gap-10">
+          <aside className="md:col-span-2 xl:col-span-2">
             <PersonaSelector
               persona={persona}
               setPersona={setPersona}
@@ -128,7 +128,7 @@ export default function App() {
             />
           </aside>
 
-          <section className="md:col-span-4">
+          <section className="md:col-span-6 xl:col-span-6">
             <div className="bg-surface dark:bg-dark-400 rounded-3xl shadow-xl border border-border dark:border-dark-350 p-8 flex flex-col min-h-0 h-full transition-colors duration-500 animate-fadeInLeft">
               {/* Make message area and input flex children so input is always visible */}
               <div className="flex flex-col flex-1 min-h-0">

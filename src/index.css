@@ -1,3 +1,58 @@
+/* Wider layout upgrades */
+.container-card,
+.card,
+.bg-surface,
+.bg-dark-400 {
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 1280px) {
+
+    .container-card,
+    .card,
+    .bg-surface,
+    .bg-dark-400 {
+        max-width: 90vw;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media (min-width: 1536px) {
+
+    .container-card,
+    .card,
+    .bg-surface,
+    .bg-dark-400 {
+        max-width: 80vw;
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}
+
+/* Enhance card and chat area for wide screens */
+.card,
+.bg-surface,
+.bg-dark-400 {
+    box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.08), 0 1.5px 6px 0 rgba(0, 0, 0, 0.04);
+    border-radius: 2rem;
+    border-width: 2px;
+}
+
+/* Responsive grid gap for wide screens */
+.grid {
+    gap: 2rem;
+}
+
+@media (min-width: 1280px) {
+    .grid {
+        gap: 3rem;
+    }
+}
+
 /* Custom minimal scrollbars for message list */
 .custom-scrollbar {
     scrollbar-width: thin;
