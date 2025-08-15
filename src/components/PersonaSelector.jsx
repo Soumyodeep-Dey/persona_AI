@@ -58,13 +58,13 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow sm:sticky sm:top-6">
+    <div className="w-full md:w-72 lg:w-80 bg-surface dark:bg-surface-dark rounded-xl p-4 shadow-sm sm:sticky sm:top-6 transition-colors duration-150">
       <div className="flex items-center gap-3 mb-3">
-        <div className="w-12 h-12 rounded-full overflow-hidden shadow-md">
+        <div className="w-16 h-16 rounded-full overflow-hidden shadow-md">
           {personaImages[persona] ? (
             <img src={personaImages[persona]} alt={`${current.name} avatar`} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-200">{current.name[0]}</div>
+            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-lg font-semibold text-gray-700 dark:text-gray-200">{current.name[0]}</div>
           )}
         </div>
         <div>
@@ -92,11 +92,12 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
 
       <div>
         <button
-          className={`w-full flex items-center justify-between px-3 py-2 rounded-md border ${isExpanded ? 'border-blue-300' : 'border-gray-200 dark:border-gray-700'} bg-gray-50 dark:bg-gray-900`}
+          className={`w-full flex items-center justify-between px-3 py-2 rounded-md border ${isExpanded ? 'border-blue-300' : 'border-gray-200 dark:border-gray-700'} bg-gray-50 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-1 transition`}
           onClick={() => !disabled && setIsExpanded(s => !s)}
           aria-expanded={isExpanded}
           aria-haspopup="listbox"
           disabled={disabled}
+          aria-label="Select persona"
         >
           <span className="text-sm text-gray-700 dark:text-gray-200">{current.name}</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transform transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
@@ -114,11 +115,11 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
                 onClick={() => select(p.id)}
                 className={`w-full text-left px-3 py-2 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 ${p.id === persona ? 'bg-blue-50 dark:bg-blue-900' : ''}`}
               >
-                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
                   {personaImages[p.id] ? (
                     <img src={personaImages[p.id]} alt={`${p.name} avatar`} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-xs font-semibold text-gray-700 dark:text-gray-200">{p.name[0]}</div>
+                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-200">{p.name[0]}</div>
                   )}
                 </div>
                 <div className="flex-1">

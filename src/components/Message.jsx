@@ -44,7 +44,7 @@ export default function Message({ message, personaImages }) {
         </div>
       )}
 
-      <div className={`max-w-[70%] ${isUser ? 'text-right' : 'text-left'}`}>
+      <div className={`max-w-[80%] ${isUser ? 'text-right' : 'text-left'}`}>
         <div className={`inline-block px-4 py-2 rounded-2xl shadow ${isUser ? 'bg-primary-600 text-white' : 'bg-surface dark:bg-surface-dark text-text dark:text-text-dark'}`}>
           {!isUser && (
             <div className="flex items-baseline gap-2 mb-1">

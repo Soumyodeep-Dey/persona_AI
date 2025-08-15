@@ -6,6 +6,8 @@ export default function MessageList({ messages, personaImages, loading }) {
   const containerRef = useRef(null);
   const [isAtBottom, setIsAtBottom] = useState(true);
   const [showNewIndicator, setShowNewIndicator] = useState(false);
+  const [lastSeenCount, setLastSeenCount] = useState(() => messages.length);
+  const scrollTimeout = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({
@@ -19,6 +21,7 @@ export default function MessageList({ messages, personaImages, loading }) {
     if (isAtBottom) {
       scrollToBottom();
       setShowNewIndicator(false);
+      setLastSeenCount(messages.length);
     } else {
       // if new messages arrive while user is scrolled up, show indicator
       setShowNewIndicator(true);
@@ -30,19 +33,44 @@ export default function MessageList({ messages, personaImages, loading }) {
     const el = containerRef.current;
     if (!el) return;
 
-    const threshold = 80; // px from bottom to consider "at bottom"
+    const threshold = 120; // px from bottom to consider "at bottom"
     const onScroll = () => {
-      const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight <= threshold;
-      setIsAtBottom(atBottom);
-      if (atBottom) setShowNewIndicator(false);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      // debounce frequent scroll events to reduce re-renders
+      scrollTimeout.current = setTimeout(() => {
+        const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight <= threshold;
+        setIsAtBottom((prev) => {
+          if (prev !== atBottom) {
+            if (atBottom) setShowNewIndicator(false);
+            return atBottom;
+          }
+          return prev;
+        });
+      }, 80);
     };
 
     el.addEventListener("scroll", onScroll, { passive: true });
     // run once to initialize state
     onScroll();
 
-    return () => el.removeEventListener("scroll", onScroll);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
   }, []);
+
+  // Keyboard shortcut: press End to jump to newest messages
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'End') {
+        scrollToBottom();
+        setShowNewIndicator(false);
+        setLastSeenCount(messages.length);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [messages.length]);
 
   if (messages.length === 0) {
     return (
@@ -77,7 +105,7 @@ export default function MessageList({ messages, personaImages, loading }) {
                 </div>
               </div>
 
-              <div className="max-w-[70%] text-left">
+              <div className="max-w-[80%] text-left">
                 <div className="inline-block px-4 py-2 rounded-2xl shadow bg-surface dark:bg-surface-dark text-text dark:text-text-dark">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 bg-gray-400 dark:bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
@@ -99,12 +127,13 @@ export default function MessageList({ messages, personaImages, loading }) {
             onClick={() => {
               scrollToBottom();
               setShowNewIndicator(false);
+              setLastSeenCount(messages.length);
             }}
             className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-primary-600 text-white text-sm shadow-lg hover:bg-primary-700 focus:outline-none"
             aria-label="Scroll to newest messages"
             title="Scroll to newest messages"
           >
-            New messages
+            {Math.max(1, messages.length - lastSeenCount)} new message{messages.length - lastSeenCount > 1 ? 's' : ''}
           </button>
         </div>
       )}
