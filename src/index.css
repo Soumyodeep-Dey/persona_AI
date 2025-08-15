@@ -16,7 +16,8 @@ body {
 
 /* When Tailwind's class-based dark mode is active the `.dark` class will be on <html> */
 .dark body {
-    @apply bg-background-dark text-text-dark;
+    /* Use a neutral gray background in dark mode instead of pure black */
+    @apply bg-dark-250 text-text-dark;
 }
 
 /* Links */
@@ -77,4 +78,31 @@ textarea {
 /* Make color transitions smoother across the UI */
 * {
     transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, border-color var(--transition-duration) ease;
+}
+
+/* Dark mode: nicer scrollbars */
+.dark *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.dark *::-webkit-scrollbar-track {
+    background: #141414;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    border: 2px solid #141414;
+}
+
+/* Selection colors */
+::selection {
+    background: rgba(33, 150, 243, 0.25);
+    /* primary-500 at ~25% */
+}
+
+.dark ::selection {
+    background: rgba(66, 165, 255, 0.35);
+    /* primary-400 at ~35% for dark bg */
 }

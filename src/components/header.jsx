@@ -2,7 +2,7 @@ import DarkModeToggle from "./DarkModeToggle";
 
 export default function Header({ darkMode, setDarkMode, onClearChat, messageCount }) {
     return (
-        <header className="w-full border-b border-border dark:border-border-dark bg-surface dark:bg-background-dark text-text dark:text-white">
+        <header className="w-full site-shell-header border-b border-border bg-primary-50 dark:border-border-dark dark:bg-background-dark text-text dark:text-white">
             <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
                 <h1 className="m-0 text-xl font-semibold">Persona AI Chatbot</h1>
 

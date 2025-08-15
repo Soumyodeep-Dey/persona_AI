@@ -58,7 +58,7 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
   };
 
   return (
-    <div className="w-full md:w-72 lg:w-80 bg-surface dark:bg-surface-dark rounded-xl p-4 shadow-sm sm:sticky sm:top-6 transition-colors duration-150">
+    <div className="w-full md:w-72 lg:w-80 card p-4 sm:sticky sm:top-6 transition-colors duration-150">
       <div className="flex items-center gap-3 mb-3">
         <div className="w-16 h-16 rounded-full overflow-hidden shadow-md">
           {personaImages[persona] ? (

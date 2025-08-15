@@ -29,7 +29,7 @@ export default function MessageInput({ input, setInput, onSend, loading, placeho
   };
 
   return (
-    <div className="pt-2">
+    <div className="pt-2 border-t border-border dark:border-border-dark/60">
       <form onSubmit={handleSubmit} className="flex items-end gap-2">
 
         <textarea
@@ -41,7 +41,7 @@ export default function MessageInput({ input, setInput, onSend, loading, placeho
           onPaste={handlePaste}
           placeholder={placeholder || "Type your message..."}
           disabled={loading}
-          className="flex-1 min-h-[44px] max-h-[160px] resize-none px-4 py-3 rounded-2xl border border-border dark:border-border-dark bg-background dark:bg-background-dark text-sm focus:outline-none focus:ring-2 focus:ring-primary-300"
+          className="flex-1 min-h-[44px] max-h-[160px] resize-none px-4 py-3 rounded-2xl border border-border dark:border-border-dark bg-background dark:bg-surface-dark text-sm focus:outline-none focus:ring-2 focus:ring-primary-300 placeholder-gray-400 dark:placeholder-gray-500"
           rows="1"
           maxLength={2000}
         />
@@ -50,7 +50,7 @@ export default function MessageInput({ input, setInput, onSend, loading, placeho
           <div className="text-xs text-gray-500 dark:text-gray-400">{input.length}/2000</div>
           <button
             type="submit"
-            className={`px-4 py-2 rounded-full font-semibold text-white ${input.trim() && !loading ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'}`}
+            className={`px-4 py-2 rounded-full font-semibold text-white ${input.trim() && !loading ? 'bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-400' : 'bg-gray-400 cursor-not-allowed dark:bg-gray-600'}`}
             disabled={!input.trim() || loading}
             title="Send message (Enter)"
           >

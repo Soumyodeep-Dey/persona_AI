@@ -100,7 +100,7 @@ export default function App() {
   };
 
   return (
-    <div className={"min-h-screen flex flex-col " + (darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900')}>
+    <div className={"min-h-screen flex flex-col"}>
       <Header
         darkMode={darkMode}
         setDarkMode={setDarkMode}
@@ -120,7 +120,7 @@ export default function App() {
           </aside>
 
           <section className="md:col-span-4">
-            <div className={"bg-white dark:bg-gray-800 rounded-2xl shadow p-8 flex flex-col min-h-0 h-full"}>
+            <div className={"card p-6 md:p-8 flex flex-col min-h-0 h-full"}>
               <div className="flex-1 overflow-hidden min-h-0">
                 <MessageList
                   messages={messages}
