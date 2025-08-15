@@ -117,7 +117,7 @@ export default function App() {
         messageCount={messages.length}
       />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-10">
+      <main className="flex-1 max-w-full xl:max-w-screen-2xl mx-auto px-0 sm:px-2 lg:px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
           <aside className="md:col-span-2">
             <PersonaSelector

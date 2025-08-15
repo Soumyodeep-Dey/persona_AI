@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaYoutube, FaInstagram } from "react-icons/fa";
 import { getPersonaSocialLinks, formatSocialLinks } from "../data/personas";
 
 export default function PersonaSelector({ persona, setPersona, personaImages, disabled }) {
@@ -30,11 +31,9 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
           </svg>
         );
       case 'youtube':
-        return (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-            <path d="M10 15l5.19-3L10 9v6zm12-3.5s-.12-2.03-.48-2.92c-.29-.76-.93-1.37-1.69-1.66C18.03 6.5 12 6.5 12 6.5s-6.03 0-7.83.42c-.76.29-1.4.9-1.69 1.66C2.12 9.47 2 11.5 2 11.5s.12 2.03.48 2.92c.29.76.93 1.37 1.69 1.66C5.97 16.5 12 16.5 12 16.5s6.03 0 7.83-.42c.76-.29 1.4-.9 1.69-1.66.36-.89.48-2.92.48-2.92z" />
-          </svg>
-        );
+        return <FaYoutube size={14} />;
+      case 'instagram':
+        return <FaInstagram size={14} />;
       case 'github':
         return (
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -85,7 +84,7 @@ export default function PersonaSelector({ persona, setPersona, personaImages, di
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs text-primary-700 dark:text-primary-200 hover:text-primary-600 dark:hover:text-primary-300 px-2 py-1 rounded-lg bg-gradient-to-r from-surface via-primary-50 to-surface dark:from-surface-dark dark:via-primary-900 dark:to-surface-dark border border-primary-100 dark:border-primary-800 shadow-sm transition-colors"
+                  className="inline-flex items-center gap-2 text-xs text-primary-700 dark:text-primary-200 hover:text-primary-600 dark:hover:text-primary-300 px-2 py-1 rounded-lg bg-gradient-to-r from-surface via-primary-50 to-surface dark:from-surface-dark dark:via-primary-900 dark:to-surface-dark border border-primary-100 dark:border-primary-800 shadow-sm transition-colors duration-200 hover:scale-105 hover:shadow-lg"
                   title={`${current.name} on ${s.platform}`}
                 >
                   <span className="w-4 h-4 text-current">{platformIcon(s.platform)}</span>

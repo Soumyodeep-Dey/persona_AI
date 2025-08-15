@@ -54,21 +54,18 @@ export default function MessageInput({ input, setInput, onSend, loading, placeho
         <div className="flex flex-col items-center rounded-xl">
           <button
             type="submit"
-            className={`flex items-center justify-center px-6 py-3 rounded-xl font-bold text-white shadow-lg transition-all duration-200 text-lg ${input.trim() && !loading ? 'bg-gradient-to-r from-primary-600 to-primary-400 hover:from-primary-700 hover:to-primary-500 dark:from-primary-700 dark:to-primary-400 dark:hover:from-primary-800 dark:hover:to-primary-500' : 'bg-gray-400 cursor-not-allowed dark:bg-dark-700'}`}
+            className={`flex items-center justify-center px-6 py-3 rounded-full font-bold text-white shadow-xl transition-all duration-200 text-lg border-2 border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-300 ${input.trim() && !loading ? 'bg-gradient-to-r from-primary-600 to-primary-400 hover:scale-105 hover:from-primary-700 hover:to-primary-500 dark:bg-gradient-to-r dark:from-gray-900 dark:to-gray-700 dark:hover:from-gray-950 dark:hover:to-gray-800' : 'bg-gray-400 cursor-not-allowed dark:bg-dark-700'}`}
             disabled={!input.trim() || loading}
             title="Send message (Enter)"
           >
             {loading ? (
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-spin">
-                <line x1="12" y1="2" x2="12" y2="6" />
-                <line x1="12" y1="18" x2="12" y2="22" />
-                <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
-                <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+                <circle cx="12" cy="12" r="10" strokeOpacity="0.3" />
+                <path d="M12 2a10 10 0 0 1 10 10" />
               </svg>
             ) : (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
-                <line x1="22" y1="2" x2="11" y2="13" />
-                <polygon points="22,2 15,22 11,13 2,9 22,2" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-white">
+                <path d="M2 21l21-9-21-9v7l15 2-15 2z" />
               </svg>
             )}
           </button>
