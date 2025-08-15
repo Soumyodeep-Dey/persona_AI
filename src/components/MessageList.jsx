@@ -74,11 +74,11 @@ export default function MessageList({ messages, personaImages, loading }) {
 
   if (messages.length === 0) {
     return (
-      <div className="h-full w-full flex items-center justify-center text-center text-gray-500 dark:text-gray-400">
-        <div>
-          <div className="text-4xl mb-2">💬</div>
-          <h3 className="text-lg font-semibold mb-1">Start a conversation</h3>
-          <p className="text-sm">Choose a persona and send your first message to get started!</p>
+      <div className="h-full w-full flex items-center justify-center text-center text-muted dark:text-muted-dark animate-fadeInLeft">
+        <div className="bg-gradient-to-br from-surface via-primary-50 to-surface dark:from-surface-dark dark:via-primary-900 dark:to-surface-dark rounded-2xl shadow-lg p-8">
+          <div className="text-5xl mb-3">💬</div>
+          <h3 className="text-xl font-bold mb-2 text-primary-700 dark:text-primary-200">Start a conversation</h3>
+          <p className="text-base">Choose a persona and send your first message to get started!</p>
         </div>
       </div>
     );
@@ -86,8 +86,8 @@ export default function MessageList({ messages, personaImages, loading }) {
 
   return (
     <div className="relative h-full">
-      <div ref={containerRef} className="h-full overflow-y-auto pr-2">
-        <div className="flex flex-col">
+      <div ref={containerRef} className="h-full overflow-y-auto pr-2 custom-scrollbar">
+        <div className="flex flex-col gap-2">
           {messages.map((message) => (
             <Message
               key={message.id || Math.random()}
@@ -98,19 +98,19 @@ export default function MessageList({ messages, personaImages, loading }) {
 
           {/* Typing indicator rendered as a chat bubble when assistant is generating */}
           {loading && (
-            <div className="mb-4 flex justify-start">
+            <div className="mb-4 flex justify-start animate-fadeInLeft">
               <div className="mr-3 flex-shrink-0">
-                <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-sm font-semibold text-gray-700 dark:text-gray-200">
-                  A
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary-100 via-surface to-primary-200 dark:from-primary-900 dark:via-surface-dark dark:to-primary-800 flex items-center justify-center shadow-lg">
+                  <span className="text-base font-bold text-primary-700 dark:text-primary-200">Typing...</span>
                 </div>
               </div>
 
               <div className="max-w-[80%] text-left">
-                <div className="inline-block px-4 py-2 rounded-2xl shadow-sm border border-transparent dark:border-border-dark bg-surface dark:bg-surface-dark text-text dark:text-text-dark">
+                <div className="inline-block px-4 py-2 rounded-2xl shadow-md border border-border dark:border-border-dark bg-surface dark:bg-surface-dark text-text dark:text-text-dark">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-gray-400 dark:bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-                    <span className="w-2 h-2 bg-gray-400 dark:bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '.12s' }} />
-                    <span className="w-2 h-2 bg-gray-400 dark:bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '.24s' }} />
+                    <span className="w-2 h-2 bg-primary-400 dark:bg-primary-200 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+                    <span className="w-2 h-2 bg-primary-400 dark:bg-primary-200 rounded-full animate-bounce" style={{ animationDelay: '.12s' }} />
+                    <span className="w-2 h-2 bg-primary-400 dark:bg-primary-200 rounded-full animate-bounce" style={{ animationDelay: '.24s' }} />
                   </div>
                 </div>
               </div>
@@ -122,14 +122,14 @@ export default function MessageList({ messages, personaImages, loading }) {
       </div>
 
       {showNewIndicator && (
-        <div className="absolute bottom-4 right-4">
+        <div className="absolute bottom-4 right-4 animate-fadeInLeft">
           <button
             onClick={() => {
               scrollToBottom();
               setShowNewIndicator(false);
               setLastSeenCount(messages.length);
             }}
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-primary-600 text-white text-sm shadow-lg hover:bg-primary-700 focus:outline-none"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-600 to-primary-400 text-white text-sm font-semibold shadow-xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all"
             aria-label="Scroll to newest messages"
             title="Scroll to newest messages"
           >

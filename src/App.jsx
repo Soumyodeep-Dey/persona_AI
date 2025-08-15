@@ -12,6 +12,7 @@ const personaImages = {
 };
 
 export default function App() {
+  const MESSAGE_LIMIT = 5; // Set your desired limit here
   const [persona, setPersona] = useState("hitesh");
   // chats is a mapping of persona -> messages[]; persisted to localStorage
   const [chats, setChats] = useState(() => {
@@ -34,6 +35,7 @@ export default function App() {
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+  const [limitReached, setLimitReached] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
@@ -56,7 +58,13 @@ export default function App() {
   }, [persona, chats]);
 
   const sendMessage = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || limitReached) return;
+    // Count only user messages for the limit
+    const userMessagesCount = (chats[persona] || []).filter(m => m.role === "user").length;
+    if (userMessagesCount >= MESSAGE_LIMIT) {
+      setLimitReached(true);
+      return;
+    }
     const userMsg = { role: "user", content: input, timestamp: new Date().toISOString(), id: Date.now() + Math.random() };
 
     // optimistic update: add user's message to current persona chat
@@ -97,10 +105,11 @@ export default function App() {
   const clearChat = () => {
     setChats((prev) => ({ ...prev, [persona]: [] }));
     setMessages([]);
+    setLimitReached(false);
   };
 
   return (
-    <div className={"min-h-screen flex flex-col"}>
+    <div className="min-h-screen flex flex-col bg-gradient-light dark:bg-gradient-dark transition-colors duration-500">
       <Header
         darkMode={darkMode}
         setDarkMode={setDarkMode}
@@ -108,8 +117,8 @@ export default function App() {
         messageCount={messages.length}
       />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
           <aside className="md:col-span-2">
             <PersonaSelector
               persona={persona}
@@ -120,8 +129,8 @@ export default function App() {
           </aside>
 
           <section className="md:col-span-4">
-            <div className={"card p-6 md:p-8 flex flex-col min-h-0 h-full"}>
-              <div className="flex-1 overflow-hidden min-h-0">
+            <div className="bg-surface dark:bg-dark-400 rounded-3xl shadow-xl border border-border dark:border-dark-350 p-8 flex flex-col min-h-0 h-full transition-colors duration-500 animate-fadeInLeft">
+              <div className="flex-1 overflow-y-auto min-h-0 custom-scrollbar">
                 <MessageList
                   messages={messages}
                   personaImages={personaImages}
@@ -129,13 +138,18 @@ export default function App() {
                 />
               </div>
 
-              <div className="mt-4">
+              <div className="mt-6">
+                {limitReached && (
+                  <div className="mb-4 text-center text-red-600 font-semibold bg-red-50 border border-red-200 rounded-xl p-3">
+                    Message limit reached! Please clear the chat to continue.
+                  </div>
+                )}
                 <MessageInput
                   input={input}
                   setInput={setInput}
                   onSend={sendMessage}
-                  loading={loading}
-                  placeholder={`Chat with ${persona}...`}
+                  loading={loading || limitReached}
+                  placeholder={limitReached ? "Message limit reached" : `Chat with ${persona}...`}
                 />
               </div>
             </div>

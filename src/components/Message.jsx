@@ -33,11 +33,11 @@ export default function Message({ message, personaImages }) {
             <img
               src={getPersonaImage()}
               alt={`${message.persona} avatar`}
-              className="w-10 h-10 rounded-full object-cover shadow"
+              className="w-14 h-14 rounded-full object-cover shadow"
               onError={handleImageError}
             />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-sm font-semibold text-gray-700 dark:text-gray-200">
+            <div className="w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-base font-bold text-gray-700 dark:text-gray-200">
               {message.persona ? message.persona[0].toUpperCase() : 'A'}
             </div>
           )}
@@ -45,21 +45,21 @@ export default function Message({ message, personaImages }) {
       )}
 
       <div className={`max-w-[80%] ${isUser ? 'text-right' : 'text-left'}`}>
-        <div className={`inline-block px-4 py-2 rounded-2xl ${isUser ? 'bg-primary-600 text-white shadow-md' : 'bg-surface dark:bg-surface-dark text-text dark:text-text-dark border border-transparent dark:border-border-dark shadow-sm'}`}>
-          {!isUser && (
-            <div className="flex items-baseline gap-2 mb-1">
-              <span className="font-semibold text-sm">{message.persona || 'Assistant'}</span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">{formatTime(message.timestamp)}</span>
-            </div>
-          )}
+        <div className={`inline-block px-6 py-4 rounded-3xl shadow-xl border ${isUser ? 'bg-gradient-to-r from-primary-600 to-primary-400 text-white border-primary-200' : 'bg-gradient-to-br from-surface via-primary-50 to-surface dark:from-dark-400 dark:via-dark-350 dark:to-dark-400 text-text dark:text-dark-950 border-border dark:border-dark-350'} backdrop-blur-md transition-all duration-300`}>
+          <div className="flex items-center justify-between mb-2">
+            {!isUser && (
+              <span className="font-bold text-primary-700 dark:text-primary-200 text-base">{message.persona || 'Assistant'}</span>
+            )}
+            <span className="text-xs text-muted dark:text-muted-dark ml-2">{formatTime(message.timestamp)}</span>
+          </div>
 
-          <div className="whitespace-pre-wrap break-words">
+          <div className="whitespace-pre-wrap break-words text-base leading-relaxed">
             {message.content}
           </div>
 
           {isError && (
-            <div className="mt-2 text-xs text-red-500 flex items-center gap-2">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-red-500">
+            <div className="mt-3 text-xs text-red-500 flex items-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-red-500">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="15" y1="9" x2="9" y2="15" stroke="#fff" strokeWidth="1.5" />
                 <line x1="9" y1="9" x2="15" y2="15" stroke="#fff" strokeWidth="1.5" />
@@ -76,11 +76,11 @@ export default function Message({ message, personaImages }) {
             <img
               src={userImagePath}
               alt="You"
-              className="w-10 h-10 rounded-full object-cover"
+              className="w-14 h-14 rounded-full object-cover"
               onError={() => setUserImageError(true)}
             />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-sm font-semibold text-blue-700">
+            <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-base font-bold text-blue-700">
               You
             </div>
           )}
