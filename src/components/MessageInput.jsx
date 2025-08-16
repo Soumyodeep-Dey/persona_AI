@@ -32,7 +32,33 @@ export default function MessageInput({ input, setInput, onSend, loading, placeho
   };
 
   const handlePaste = () => {
-    // placeholder for paste handling
+    return (e) => {
+      if (e.clipboardData) {
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          if (item.kind === 'file' && item.type.startsWith('image/')) {
+            // For now, just alert. You can handle image upload here.
+            alert('Image paste detected! Image upload not supported yet.');
+            e.preventDefault();
+            return;
+          }
+        }
+        // If only text, insert at cursor
+        const text = e.clipboardData.getData('text');
+        if (text) {
+          const textarea = textareaRef.current;
+          const start = textarea.selectionStart;
+          const end = textarea.selectionEnd;
+          setInput(input.slice(0, start) + text + input.slice(end));
+          // Move cursor after pasted text
+          setTimeout(() => {
+            textarea.selectionStart = textarea.selectionEnd = start + text.length;
+          }, 0);
+          e.preventDefault();
+        }
+      }
+    };
   };
 
   return (

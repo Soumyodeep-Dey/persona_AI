@@ -19,8 +19,11 @@ export default function App() {
     try {
       const raw = localStorage.getItem("persona_chats");
       if (raw) return JSON.parse(raw);
-    } catch {
-      // ignore
+    } catch (err) {
+      if (window.location.hostname === 'localhost') {
+        console.error('Error reading persona_chats from localStorage:', err);
+      }
+      // fallback to default
     }
     return { hitesh: [], piyush: [] };
   });
@@ -47,8 +50,11 @@ export default function App() {
   useEffect(() => {
     try {
       localStorage.setItem("persona_chats", JSON.stringify(chats));
-    } catch {
-      // ignore
+    } catch (err) {
+      if (window.location.hostname === 'localhost') {
+        console.error('Error saving persona_chats to localStorage:', err);
+      }
+      // ignore in production
     }
   }, [chats]);
 
@@ -103,6 +109,7 @@ export default function App() {
   };
 
   const clearChat = () => {
+    if (limitReached) return;
     setChats((prev) => ({ ...prev, [persona]: [] }));
     setMessages([]);
     setLimitReached(false);
@@ -140,18 +147,19 @@ export default function App() {
                   />
                 </div>
                 <div className="mt-6">
-                  {limitReached && (
+                  {limitReached ? (
                     <div className="mb-4 text-center text-red-600 font-semibold bg-red-50 border border-red-200 rounded-xl p-3">
-                      Message limit reached! Please clear the chat to continue.
+                      Message limit reached! No more messages can be sent.
                     </div>
+                  ) : (
+                    <MessageInput
+                      input={input}
+                      setInput={setInput}
+                      onSend={sendMessage}
+                      loading={loading}
+                      placeholder={`Chat with ${persona}...`}
+                    />
                   )}
-                  <MessageInput
-                    input={input}
-                    setInput={setInput}
-                    onSend={sendMessage}
-                    loading={loading || limitReached}
-                    placeholder={limitReached ? "Message limit reached" : `Chat with ${persona}...`}
-                  />
                 </div>
               </div>
             </div>
