@@ -81,13 +81,13 @@ export default function MessageList({ messages, personaImages, loading }) {
         ref={containerRef}
         className="h-full overflow-y-auto pr-4 custom-scrollbar scroll-smooth"
       >
-        <div className="flex flex-col gap-5 p-6 xl:p-10">
-          {messages.map((message) => (
+        <div className="flex flex-col gap-5 p-6 xl:p-10 message-list-scroll">
+          {messages.map((message, idx) => (
             <Message
               key={message.id || Math.random()}
               message={message}
               personaImages={personaImages}
-              className="max-w-3xl xl:max-w-4xl w-full mx-auto"
+              className={`max-w-3xl xl:max-w-4xl w-full mx-auto message-item${idx === messages.length - 1 ? ' message-item-latest' : ''}`}
             />
           ))}
 
