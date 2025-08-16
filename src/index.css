@@ -1,12 +1,15 @@
 /* Show only the latest message by default, fade others, allow scroll */
 
 /* Professional message list appearance */
+
+/* Refined professional message list appearance */
 .message-list-scroll .message-item {
-    opacity: 0.25;
-    filter: blur(1px) grayscale(30%);
-    transition: opacity 0.35s cubic-bezier(.4, 2, .3, 1), filter 0.35s cubic-bezier(.4, 2, .3, 1), box-shadow 0.3s;
+    opacity: 0.45;
+    filter: grayscale(10%);
+    transition: opacity 0.3s cubic-bezier(.4, 2, .3, 1), filter 0.3s cubic-bezier(.4, 2, .3, 1), box-shadow 0.3s;
     pointer-events: none;
     box-shadow: none;
+    padding: 0.5rem 0;
 }
 
 .message-list-scroll .message-item-latest {
@@ -16,6 +19,7 @@
     box-shadow: 0 4px 24px 0 rgba(80, 80, 120, 0.10), 0 1.5px 6px 0 rgba(80, 80, 120, 0.04);
     border-radius: 1.5rem;
     background: linear-gradient(90deg, #f8fafc 80%, #e0e7ff 100%);
+    padding: 1rem 0;
 }
 
 .message-list-scroll:hover .message-item {

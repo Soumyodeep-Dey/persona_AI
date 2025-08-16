@@ -40,22 +40,23 @@ The website allows users to switch between these personas seamlessly and chat wi
 ---
 
 ## 📂 Project Structure
-eslint.config.js # Linting rules
-index.html # Base HTML
-package.json # Dependencies & scripts
-postcss.config.js # PostCSS setup for Tailwind
-README.md # Documentation
-tailwind.config.js # Tailwind configuration
-vite.config.js # Vite build configuration
+```
+eslint.config.js        # Linting rules
+index.html              # Base HTML
+package.json            # Dependencies & scripts
+postcss.config.js       # PostCSS setup for Tailwind
+README.md               # Documentation
+tailwind.config.js      # Tailwind configuration
+vite.config.js          # Vite build configuration
 public/
-personaData.json # Sample tone/style reference data
+  personaData.json      # Sample tone/style reference data
 src/
-App.jsx # Main app UI
-main.jsx # React entry point
-index.css # Tailwind imports + global CSS
-api/openai.js # OpenAI API helper functions
-assets/ # Images and icons
-
+  App.jsx               # Main app UI
+  main.jsx              # React entry point
+  index.css             # Tailwind imports + global CSS
+  api/openai.js         # OpenAI API helper functions
+  assets/               # Images and icons
+```
 
 ---
 
@@ -65,48 +66,65 @@ assets/ # Images and icons
 ```bash
 git clone https://github.com/yourusername/persona-ai.git
 cd persona-ai
-2. Install Dependencies
+```
+
+### 2. Install Dependencies
+```bash
 npm install
-3. Environment Variables
-Create a .env file in the project root:
+```
 
+### 3. Environment Variables
+Create a `.env` file in the project root:
+```env
 VITE_OPENAI_API_KEY=your_openai_api_key_here
-4. Run Development Server
+```
+
+### 4. Run Development Server
+```bash
 npm run dev
-5. Build for Production
+```
+
+### 5. Build for Production
+```bash
 npm run build
-📋 Submission Instructions
+```
+
+---
+
+## 📋 Submission Instructions
 As per the hackathon brief:
+- Build a website that uses an LLM to mimic Hitesh Choudhary & Piyush Garg’s tone from YouTube/Twitter.
+- Show data preparation, prompt logic, and sample chats for both personas.
+- Include this README with setup steps.
 
-Build a website that uses an LLM to mimic Hitesh Choudhary & Piyush Garg’s tone from YouTube/Twitter.
+---
 
-Show data preparation, prompt logic, and sample chats for both personas.
+## 🧪 Evaluation Parameters
+- **Persona Match:** Accurate tone for each persona.
+- **Relevance:** On-topic, context-aware replies.
+- **Implementation:** Website design, code quality, LLM integration.
+- **UX:** Smooth persona switching, clear responses.
 
-Include this README with setup steps.
+---
 
-🧪 Evaluation Parameters
-Persona Match – Accurate tone for each persona.
-
-Relevance – On-topic, context-aware replies.
-
-Implementation – Website design, code quality, LLM integration.
-
-UX – Smooth persona switching, clear responses.
-
-📜 Prompt Logic
+## 📜 Prompt Logic
 The system prompt changes based on selected persona:
 
-Hitesh Choudhary Prompt:
+**Hitesh Choudhary Prompt:**
+> You are Hitesh Choudhary, a tech educator. Respond in a friendly, Hindi-English mix, motivational yet practical tone.
 
-You are Hitesh Choudhary, a tech educator. Respond in a friendly, Hindi-English mix, motivational yet practical tone.
-Piyush Garg Prompt:
+**Piyush Garg Prompt:**
+> You are Piyush Garg, a software engineer and YouTuber. Respond in a witty, casual, but informative style.
 
-You are Piyush Garg, a software engineer and YouTuber. Respond in a witty, casual, but informative style.
-Few-shot examples from public posts/videos are included in personaData.json to enhance tone matching.
+Few-shot examples from public posts/videos are included in `personaData.json` to enhance tone matching.
 
-📸 Screenshots
+---
+
+## 📸 Screenshots
 (Add screenshots of UI here after running the project)
 
-⚠️ Disclaimer
+---
+
+## ⚠️ Disclaimer
 This project is for educational/demo purposes only.
 All personality traits and tones are based on publicly available content and are not official representations of the individuals.
