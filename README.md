@@ -39,6 +39,14 @@ The website allows users to switch between these personas seamlessly and chat wi
 
 ---
 
+## 📸 Screenshots
+
+![Main UI Screenshot](public/images/ss1.png)
+
+![Chat Example Screenshot](public/images/ss2.png)
+
+---
+
 ## 📂 Project Structure
 ```
 eslint.config.js        # Linting rules
@@ -118,10 +126,6 @@ The system prompt changes based on selected persona:
 
 Few-shot examples from public posts/videos are included in `personaData.json` to enhance tone matching.
 
----
-
-## 📸 Screenshots
-(Add screenshots of UI here after running the project)
 
 ---
 
